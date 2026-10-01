@@ -105,6 +105,7 @@ export default function ProductForm({
 
   return (
     <form
+      className="product-form"
 
       // เมื่อ Submit จะเรียก saveProduct
       // หลังจากข้อมูลผ่านการตรวจสอบแล้ว
@@ -117,134 +118,145 @@ export default function ProductForm({
 
       {/* ---------------- ชื่อสินค้า ---------------- */}
 
-      <label htmlFor="title">
-        ชื่อสินค้า
-      </label>
+      <div className="product-fields">
+        <div className="form-field">
+          <label htmlFor="title">
+            ชื่อสินค้า
+          </label>
 
-      <input
-        id="title"
+          <input
+            id="title"
 
-        // กำหนดว่าช่องนี้จำเป็น
-        required
+            // กำหนดว่าช่องนี้จำเป็น
+            required
 
-        // เชื่อมช่องนี้กับ React Hook Form
-        {...register("title")}
+            // เชื่อมช่องนี้กับ React Hook Form
+            {...register("title")}
 
-        // บอกว่าช่องนี้มี Error หรือไม่
-        aria-invalid={!!errors.title}
+            // บอกว่าช่องนี้มี Error หรือไม่
+            aria-invalid={!!errors.title}
 
-        // เชื่อม input กับข้อความ Error
-        aria-describedby="title-error"
-      />
+            // เชื่อม input กับข้อความ Error
+            aria-describedby="title-error"
+          />
 
-      {/* แสดงข้อความ Error ของชื่อสินค้า */}
-      <span id="title-error" role="alert">
-        {errors.title?.message}
-      </span>
+          {/* แสดงข้อความ Error ของชื่อสินค้า */}
+          <span id="title-error" role="alert">
+            {errors.title?.message}
+          </span>
+        </div>
 
 
       {/* ---------------- ราคา ---------------- */}
 
-      <label htmlFor="price">
-        ราคา
-      </label>
+        <div className="form-field">
+          <label htmlFor="price">
+            ราคา
+          </label>
 
-      <input
-        id="price"
-        type="number"
-        step="0.01"
-        required
+          <input
+            id="price"
+            type="number"
+            step="0.01"
+            required
 
-        {...register("price", {
+            {...register("price", {
 
-          // แปลงค่าจาก input จาก String เป็น Number
-          valueAsNumber: true,
+              // แปลงค่าจาก input จาก String เป็น Number
+              valueAsNumber: true,
 
-        })}
+            })}
 
-        aria-invalid={!!errors.price}
-        aria-describedby="price-error"
-      />
+            aria-invalid={!!errors.price}
+            aria-describedby="price-error"
+          />
 
-      {/* แสดงข้อความ Error ของราคา */}
-      <span id="price-error" role="alert">
-        {errors.price?.message}
-      </span>
+          {/* แสดงข้อความ Error ของราคา */}
+          <span id="price-error" role="alert">
+            {errors.price?.message}
+          </span>
+        </div>
 
 
       {/* ---------------- จำนวนสินค้า ---------------- */}
 
-      <label htmlFor="stock">
-        จำนวนคงเหลือ
-      </label>
+        <div className="form-field">
+          <label htmlFor="stock">
+            จำนวนคงเหลือ
+          </label>
 
-      <input
-        id="stock"
-        type="number"
-        required
+          <input
+            id="stock"
+            type="number"
+            required
 
-        {...register("stock", {
+            {...register("stock", {
 
-          // แปลงค่าจาก input เป็น Number
-          valueAsNumber: true,
+              // แปลงค่าจาก input เป็น Number
+              valueAsNumber: true,
 
-        })}
+            })}
 
-        aria-invalid={!!errors.stock}
-        aria-describedby="stock-error"
-      />
+            aria-invalid={!!errors.stock}
+            aria-describedby="stock-error"
+          />
 
-      {/* แสดงข้อความ Error ของจำนวนสินค้า */}
-      <span id="stock-error" role="alert">
-        {errors.stock?.message}
-      </span>
+          {/* แสดงข้อความ Error ของจำนวนสินค้า */}
+          <span id="stock-error" role="alert">
+            {errors.stock?.message}
+          </span>
+        </div>
 
 
       {/* ---------------- หมวดหมู่ ---------------- */}
 
-      <label htmlFor="category">
-        หมวดหมู่
-      </label>
+        <div className="form-field">
+          <label htmlFor="category">
+            หมวดหมู่
+          </label>
 
-      <select
-        id="category"
-        required
+          <select
+            id="category"
+            required
 
-        // เชื่อม Select กับ React Hook Form
-        {...register("category")}
+            // เชื่อม Select กับ React Hook Form
+            {...register("category")}
 
-        aria-invalid={!!errors.category}
-        aria-describedby="category-error"
-      >
-
-        {/* ค่าเริ่มต้น ให้ผู้ใช้เลือกหมวดหมู่ */}
-        <option value="">
-          กรุณาเลือกหมวดหมู่
-        </option>
-
-
-        {/* วนแสดงหมวดหมู่ทั้งหมดจาก CATEGORIES */}
-        {CATEGORIES.map((name) => (
-          <option
-            key={name}
-            value={name}
+            aria-invalid={!!errors.category}
+            aria-describedby="category-error"
           >
-            {name}
-          </option>
-        ))}
 
-      </select>
+            {/* ค่าเริ่มต้น ให้ผู้ใช้เลือกหมวดหมู่ */}
+            <option value="">
+              กรุณาเลือกหมวดหมู่
+            </option>
 
-      {/* แสดงข้อความ Error ของหมวดหมู่ */}
-      <span id="category-error" role="alert">
-        {errors.category?.message}
-      </span>
+
+            {/* วนแสดงหมวดหมู่ทั้งหมดจาก CATEGORIES */}
+            {CATEGORIES.map((name) => (
+              <option
+                key={name}
+                value={name}
+              >
+                {name}
+              </option>
+            ))}
+
+          </select>
+
+          {/* แสดงข้อความ Error ของหมวดหมู่ */}
+          <span id="category-error" role="alert">
+            {errors.category?.message}
+          </span>
+        </div>
+      </div>
 
 
       {/* ---------------- ปุ่มบันทึก ---------------- */}
 
-      <button
-        type="submit"
+      <div className="form-actions">
+        <button
+          type="submit"
 
         // ปุ่มจะกดไม่ได้ถ้ายังไม่ได้แก้ข้อมูล
         // หรือข้อมูลยังไม่ถูกต้อง
@@ -257,24 +269,25 @@ export default function ProductForm({
           ? "บันทึกการแก้ไข"
           : "เพิ่มสินค้า"}
 
-      </button>
+        </button>
 
 
       {/* ---------------- ปุ่มยกเลิก ---------------- */}
 
-      {editing && (
+        {editing && (
 
         // ปุ่มนี้จะแสดงเฉพาะตอนกำลังแก้ไขสินค้า
-        <button
-          type="button"
+          <button
+            type="button"
 
           // เรียกฟังก์ชันยกเลิกจาก ProductExplorer
           onClick={onCancel}
         >
           ยกเลิก
-        </button>
+          </button>
 
-      )}
+        )}
+      </div>
 
     </form>
   );

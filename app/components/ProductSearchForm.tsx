@@ -60,6 +60,7 @@ export default function ProductSearchForm({
 
   return (
     <form
+      className="search-form"
 
       // ส่งข้อมูลไปที่ onSearch หลังผ่านการตรวจสอบ
       onSubmit={handleSubmit(onSearch)}
@@ -69,78 +70,85 @@ export default function ProductSearchForm({
     >
 
       {/* ช่องค้นหาสินค้า */}
-      <label htmlFor="q">
-        คำค้น
-      </label>
+      <div className="form-field">
+        <label htmlFor="q">
+          คำค้น
+        </label>
 
-      <input
-        id="q"
+        <input
+          id="q"
 
-        // เชื่อมช่องค้นหากับ React Hook Form
-        {...register("q")}
+          // เชื่อมช่องค้นหากับ React Hook Form
+          {...register("q")}
 
-        placeholder="phone"
-      />
+          placeholder="phone"
+        />
+      </div>
 
 
       {/* จำนวนรายการที่ต้องการแสดง */}
-      <label htmlFor="limit">
-        จำนวนรายการ
-      </label>
+      <div className="form-field">
+        <label htmlFor="limit">
+          จำนวนรายการ
+        </label>
 
-      <input
-        id="limit"
-        type="number"
-        required
+        <input
+          id="limit"
+          type="number"
+          required
 
-        // valueAsNumber แปลงค่าจาก String เป็น Number
-        {...register("limit", {
-          valueAsNumber: true,
-        })}
+          // valueAsNumber แปลงค่าจาก String เป็น Number
+          {...register("limit", {
+            valueAsNumber: true,
+          })}
 
-        // บอกว่าช่องนี้มี Error หรือไม่
-        aria-invalid={!!errors.limit}
+          // บอกว่าช่องนี้มี Error หรือไม่
+          aria-invalid={!!errors.limit}
 
-        // เชื่อม input กับข้อความ Error
-        aria-describedby="limit-error"
-      />
+          // เชื่อม input กับข้อความ Error
+          aria-describedby="limit-error"
+        />
 
-      {/* แสดง Error ของจำนวนรายการ */}
-      <span
-        id="limit-error"
-        role="alert"
-      >
-        {errors.limit?.message}
-      </span>
+        {/* แสดง Error ของจำนวนรายการ */}
+        <span
+          id="limit-error"
+          role="alert"
+        >
+          {errors.limit?.message}
+        </span>
+      </div>
 
 
       {/* เลือกวิธีเรียงข้อมูล */}
-      <label htmlFor="sortBy">
-        เรียงตาม
-      </label>
+      <div className="form-field">
+        <label htmlFor="sortBy">
+          เรียงตาม
+        </label>
 
-      <select
-        id="sortBy"
+        <select
+          id="sortBy"
 
-        // เชื่อม Select กับ React Hook Form
-        {...register("sortBy")}
-      >
+          // เชื่อม Select กับ React Hook Form
+          {...register("sortBy")}
+        >
 
-        {/* สร้างตัวเลือกจาก SORT_FIELDS */}
-        {SORT_FIELDS.map((field) => (
-          <option
-            key={field}
-            value={field}
-          >
-            {field}
-          </option>
-        ))}
+          {/* สร้างตัวเลือกจาก SORT_FIELDS */}
+          {SORT_FIELDS.map((field) => (
+            <option
+              key={field}
+              value={field}
+            >
+              {field}
+            </option>
+          ))}
 
-      </select>
+        </select>
+      </div>
 
 
       {/* ปุ่มค้นหา */}
       <button
+        className="search-button"
         type="submit"
 
         // ป้องกันการกดซ้ำตอนกำลังค้นหา

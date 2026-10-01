@@ -159,24 +159,27 @@ export default function ProductExplorer() {
 
 
   return (
-    <main>
-      <h1>รายการสินค้า</h1>
+    <main className="product-page">
+      <header className="page-header">
+        <h1>รายการสินค้า</h1>
 
-      <button
-        type="button"
+        <button
+          className="refresh-button"
+          type="button"
 
-        // กดเพื่อโหลดข้อมูลใหม่
-        onClick={() =>
-          loadProducts(defaultQuery)
-        }
+          // กดเพื่อโหลดข้อมูลใหม่
+          onClick={() =>
+            loadProducts(defaultQuery)
+          }
 
-        // ปิดปุ่มระหว่างกำลังโหลด
-        disabled={status === "loading"}
-      >
-        {status === "loading"
-          ? "กำลังโหลด"
-          : "โหลดข้อมูล"}
-      </button>
+          // ปิดปุ่มระหว่างกำลังโหลด
+          disabled={status === "loading"}
+        >
+          {status === "loading"
+            ? "กำลังโหลด"
+            : "โหลดข้อมูล"}
+        </button>
+      </header>
 
 
       {/* ฟอร์มค้นหา ส่งฟังก์ชัน loadProducts ไปให้ */}
@@ -195,7 +198,7 @@ export default function ProductExplorer() {
 
 
       {/* aria-live ช่วยให้โปรแกรมอ่านหน้าจอรู้ว่าข้อมูลเปลี่ยน */}
-      <section aria-live="polite">
+      <section className="product-results" aria-live="polite">
 
         {/* แสดงตอนกำลังโหลด */}
         {status === "loading" && (
